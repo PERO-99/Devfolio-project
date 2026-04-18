@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "VERITAS X",
+  "version": "1.0.0",
+  "description": "Offline scam and trust detection powered by local rules and optional Ollama.",
+  "action": {
+    "default_title": "VERITAS X",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://localhost:8010/*",
+    "http://127.0.0.1:8010/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
